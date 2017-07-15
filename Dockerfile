@@ -10,13 +10,13 @@ MAINTAINER Ron Kurr <kurr@kurron.org>
 
 USER root
 
-# Create non-root user
-RUN groupadd --system microservice --gid 444
-RUN useradd --uid 444 --system --gid microservice --home-dir /home/microservice --create-home --shell /sbin/nologin --comment "Docker image user" microservice
-RUN chown -R microservice:microservice /home/microservice
+# Create non-root user -- many systems default to 1000 so we'll do that here to make things compatible
+RUN groupadd --system powerless --gid 1000
+RUN useradd --uid 1000 --system --gid powerless --home-dir /home/powerless --create-home --shell /sbin/nologin --comment "Docker image user" powerless
+RUN chown -R powerless:powerless /home/powerless
 
 # default to being in the user's home directory
-WORKDIR /home/microservice
+WORKDIR /home/powerless
 
 # Set standard Java environment variables
 ENV JAVA_HOME /usr/lib/jvm/zulu-8-amd64
@@ -46,7 +46,7 @@ RUN apt-get install --yes software-properties-common && \
 
 # remember to switch to the non-root user in child images
 # Switch to the non-root user
-USER microservice
+USER powerless
 
 # have Ansible examine the container, by default
 CMD ["/usr/bin/ansible", "all", "--inventory=localhost,", "--verbose", "--connection=local", "-m setup"]
