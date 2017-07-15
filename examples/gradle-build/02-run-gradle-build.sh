@@ -21,19 +21,18 @@ CMD="docker run --cpus 1 \
                 --volume $(pwd)/spring-cloud-aws-echo:/spring-cloud-aws-echo \
                 --workdir /spring-cloud-aws-echo \
                 dockerazuljdk8build_azul-jdk:latest
-                ./gradlew -Pbranch=simulation \
-                          -PpublishArtifacts=true \
+                ./gradlew -PpublishArtifacts=true \
                           -PrunIntegrationTests=true \
                           -PpublishToDockerRegistry=true \
                           -PrunIntegrationTests=true \
                           -PrunAcceptanceTests=true \
                           -Dspring.profiles.active=stage-two \
                           -Dspring.data.mongodb.database=core-services-simulate-bamboo \
-                          -Dspring.rabbitmq.virtual-host=/mold-e-stage-two \
+                          -Dspring.rabbitmq.virtual-host=/stage-two \
                           -Pmajor=0 \
                           -Pminor=0 \
                           -Ppatch=0 \
-                          -Pbranch=development \
+                          -Pbranch=master \
                           -PansiblePlaybookPath=/usr/bin/ansible-playbook \
                           --gradle-user-home=/tmp \
                           --project-dir=/spring-cloud-aws-echo \

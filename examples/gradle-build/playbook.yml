@@ -1,0 +1,7 @@
+# Assembles a Docker image and tags it
+---
+- hosts: localhost 
+  connection: local
+  tasks:
+    - name: Build the image
+      command: "docker-compose --verbose build"
