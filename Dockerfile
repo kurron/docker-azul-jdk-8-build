@@ -11,9 +11,9 @@ MAINTAINER Ron Kurr <kurr@kurron.org>
 USER root
 
 # Create non-root user -- many systems default to 1000 so we'll do that here to make things compatible
-RUN groupadd --system powerless --gid 1000
-RUN useradd --uid 1000 --system --gid powerless --home-dir /home/powerless --create-home --shell /sbin/nologin --comment "Docker image user" powerless
-RUN chown -R powerless:powerless /home/powerless
+RUN groupadd --system powerless --gid 1000 && \
+    useradd --uid 1000 --system --gid powerless --home-dir /home/powerless --create-home --shell /sbin/nologin --comment "Docker image user" powerless && \
+    chown -R powerless:powerless /home/powerless
 
 # default to being in the user's home directory
 WORKDIR /home/powerless
@@ -22,6 +22,8 @@ WORKDIR /home/powerless
 ENV JAVA_HOME /usr/lib/jvm/zulu-8-amd64
 ENV JDK_HOME /usr/lib/jvm/zulu-8-amd64
 
+# have Ansible examine the container, by default
+CMD ["/usr/bin/ansible", "all", "--inventory=localhost,", "--verbose", "--connection=local", "-m setup"]
 
 # ---- watch your layers and put likely mutating operations here -----
 
@@ -48,5 +50,3 @@ RUN apt-get install --yes software-properties-common && \
 # Switch to the non-root user
 USER powerless
 
-# have Ansible examine the container, by default
-CMD ["/usr/bin/ansible", "all", "--inventory=localhost,", "--verbose", "--connection=local", "-m setup"]
