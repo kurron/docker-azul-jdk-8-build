@@ -8,7 +8,7 @@ available to orchestrate the tests. If you are looking for something to
 
 # Prerequisites
 * a working [Docker](http://docker.io) engine
-* running under a modern Linux distribution 
+* a working [Docker Compose](http://docker.io) installation
 
 # Building
 Type `./build.sh` to build the image.
