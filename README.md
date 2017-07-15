@@ -32,6 +32,43 @@ Use `./test.sh` to exercise the image.  A couple commands to try:
 There is an `examples` folder that has samples on how to run `Gradle`,
 run an `Ansible` playbook, create and tag a `Docker` image.
 
+## Controlling Docker From Inside The Container
+If you need to run docker commands from inside your container, you will need
+to add a mount to the Docker daemon at container launch time.  Here is an
+example of the `docker run` switch needed:
+
+`--volume /var/run/docker.sock:/var/run/docker.sock`
+
+In addition to the mount, you will also have to add the container to
+the `docker` group or you will get permission errors when trying to access the Docker
+daemon. Here is an example of the `docker run` switch needed:
+
+`--group-add ${DOCKER_GROUP_ID}`
+
+The Docker group id can be found via `cut -d: -f3 < <(getent group docker`.
+
+## Running Ansible From Inside The Container
+Nothing special needs to be done to run Ansible.  As long as the playbook is mounted in th
+container, then things should work as expected.  When having Ansible run commands locally
+or Ansible will attempt to establish an SSH connection, which will fail. The command-line
+switch to use:
+
+`ansible-playbook --inventory='localhost,' --verbose --connection=local playbook.yml`
+
+```
+
+You can also specify in the playbook itself.
+
+---
+- hosts: localhost
+  connection: local
+
+  tasks:
+    - name: Build Docker Image
+      command: "docker-compose --verbose build"
+```
+
+
 # Troubleshooting
 
 ## User and Group IDs
