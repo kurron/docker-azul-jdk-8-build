@@ -1,9 +1,10 @@
 # Overview
-This image is designed to be used by CI/CD systems and developers how need to
+This image is designed to be used by CI/CD systems and developers that need to
 build JVM projects from within Docker.  The container is designed to
 not only allow for compilation of JVM projects but also the assembly and
 deployment of Docker images and containers.  In addition, Ansible is
-available to orchestrate the tests.
+available to orchestrate the tests. If you are looking for something to
+[run a JVM application, try this](https://github.com/kurron/docker-azul-jdk-8).
 
 # Prerequisites
 * a working [Docker](http://docker.io) engine
@@ -38,8 +39,8 @@ The image contains a non-root user named `powerless` that is bound to ids of`100
 which matches the default ids of many Linux distributions.  This was done, in addition
 to security concerns, to allow any output of builds to be owned by the host's account.
 It isn't any fun if your newly compiled can only be accessed by `root`!  This can
-cause complications with `Ansible` if the host account uses different ids, causing
-Ansible to fail to run.  Currently, the only known work around is to build your own
+cause complications with `Ansible` if the host account uses different ids, preventing
+Ansible from running.  Currently, the only known work around is to build your own
 image and add in an additional non-root account that uses your ids.
 
 # License and Credits
