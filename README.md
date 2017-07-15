@@ -45,13 +45,14 @@ daemon. Here is an example of the `docker run` switch needed:
 
 `--group-add ${DOCKER_GROUP_ID}`
 
-The Docker group id can be found via `cut -d: -f3 < <(getent group docker`.
+The Docker group id can be found via `cut -d: -f3 < <(getent group docker`. Another
+option is to run as the `root` user, which is a security risk.
 
 ## Running Ansible From Inside The Container
 Nothing special needs to be done to run Ansible.  As long as the playbook is mounted in th
 container, then things should work as expected.  When having Ansible run commands locally
-or Ansible will attempt to establish an SSH connection, which will fail. The command-line
-switch to use:
+make sure to **specify a local connection** or Ansible will attempt to establish an SSH connection,
+which will fail. No SSH server is running in the container. The command-line switch to use:
 
 `ansible-playbook --inventory='localhost,' --verbose --connection=local playbook.yml`
 
