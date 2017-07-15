@@ -27,6 +27,10 @@ Use `./test.sh` to exercise the image.  A couple commands to try:
 1. `./test.sh ansible --version` 
 1. `./test.sh ansible all --inventory='localhost,' --connection=local -m ping` 
 
+## Examples
+There is an `examples` folder that has samples on how to run `Gradle`,
+run an `Ansible` playbook, create and tag a `Docker` image.
+
 # Troubleshooting
 
 ## User and Group IDs
