@@ -56,10 +56,9 @@ which will fail. No SSH server is running in the container. The command-line swi
 
 `ansible-playbook --inventory='localhost,' --verbose --connection=local playbook.yml`
 
-```
-
 You can also specify in the playbook itself.
 
+```
 ---
 - hosts: localhost
   connection: local
