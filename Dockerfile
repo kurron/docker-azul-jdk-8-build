@@ -35,6 +35,10 @@ RUN apt-get -qq update && \
 RUN apt-get -qq update && \
     apt-get -qqy install git subversion
 
+# IDEs running inside container need these
+RUN apt-get -qq update && \
+    apt-get -qqy install libgnomevfs2-0 libsecret-1-0 gnome-keyring
+
 # Install Docker client so we can build images and run automated tests 
 RUN curl --fail --silent --show-error --location --remote-name https://download.docker.com/linux/static/stable/x86_64/docker-${DOCKER_VERSION}.tgz && \
     tar --strip-components=1 -xvzf docker-${DOCKER_VERSION}.tgz -C /usr/local/bin && \
