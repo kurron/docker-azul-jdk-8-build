@@ -42,6 +42,7 @@ RUN apt-get -qq update && \
 # Install Docker client so we can build images and run automated tests 
 RUN curl --fail --silent --show-error --location --remote-name https://download.docker.com/linux/static/stable/x86_64/docker-${DOCKER_VERSION}.tgz && \
     tar --strip-components=1 -xvzf docker-${DOCKER_VERSION}.tgz -C /usr/local/bin && \
+    rm -f docker-${DOCKER_VERSION}.tgz && \
     chmod 0555 /usr/local/bin/docker
 
 # Install Docker Compose so we can build images and run automated tests 
