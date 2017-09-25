@@ -4,7 +4,7 @@
 FROM azul/zulu-openjdk:8u144
 
 ENV DOCKER_VERSION=17.03.2-ce
-ENV COMPOSE_VERSION=1.15.0
+ENV COMPOSE_VERSION=1.16.1
 
 MAINTAINER Ron Kurr <kurr@kurron.org>
 
