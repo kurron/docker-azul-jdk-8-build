@@ -1,7 +1,7 @@
 # Follows guidance from http://www.projectatomic.io/docs/docker-image-author-guidance/
 
 # Base image off of the official Ubuntu-based image
-FROM azul/zulu-openjdk:8u144
+FROM azul/zulu-openjdk:8
 
 ENV DOCKER_VERSION=17.03.2-ce
 ENV COMPOSE_VERSION=1.16.1
