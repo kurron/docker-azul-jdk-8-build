@@ -3,8 +3,8 @@
 # Base image off of the official Ubuntu-based image
 FROM azul/zulu-openjdk:8
 
-ENV DOCKER_VERSION=17.03.2-ce
-ENV COMPOSE_VERSION=1.19.0
+ENV DOCKER_VERSION=18.03.0-ce
+ENV COMPOSE_VERSION=1.21.0
 
 MAINTAINER Ron Kurr <kurr@kurron.org>
 
