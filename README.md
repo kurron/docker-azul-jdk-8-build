@@ -21,12 +21,12 @@ Docker will automatically install the newly built image into the cache.
 ## Launching The Image
 Use `./test.sh` to exercise the image.  A couple commands to try:
 
-1. `./test.sh` 
-1. `./test.sh java -version` 
-1. `./test.sh docker info` 
-1. `./test.sh docker-compose --version` 
-1. `./test.sh ansible --version` 
-1. `./test.sh ansible all --inventory='localhost,' --connection=local -m ping` 
+1. `./test.sh`
+1. `./test.sh java -version`
+1. `./test.sh docker info`
+1. `./test.sh docker-compose --version`
+1. `./test.sh ansible --version`
+1. `./test.sh ansible all --inventory='localhost,' --connection=local -m ping`
 
 ## Examples
 There is an `examples` folder that has samples on how to run `Gradle`,
@@ -75,7 +75,7 @@ You can also specify in the playbook itself.
 The image contains a non-root user named `powerless` that is bound to ids of`1000:1000`
 which matches the default ids of many Linux distributions.  This was done, in addition
 to security concerns, to allow any output of builds to be owned by the host's account.
-It isn't any fun if your newly compiled can only be accessed by `root`!  This can
+It isn't any fun if your newly compiled files can only be accessed by `root`!  This can
 cause complications with `Ansible` if the host account uses different ids, preventing
 Ansible from running.  Currently, the only known work around is to build your own
 image and add in an additional non-root account that uses your ids.
